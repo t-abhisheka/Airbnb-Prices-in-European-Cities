@@ -3,6 +3,7 @@ from pydantic import BaseModel
 import pickle
 import pandas as pd
 from fastapi import HTTPException
+
 app = FastAPI()
 
 class ScoreingItem(BaseModel):
@@ -51,4 +52,4 @@ async def scoring_endpoint(item: ScoreingItem):
         # Log the exception for debugging
         print(f"An error occurred: {str(e)}")
         # Raise an HTTP exception with a 500 status code
-        raise HTTPException(status_code=500, detail="Internal Server Error")
+        raise HTTPException(status_code=500, detail="Internal Server Error")sda
