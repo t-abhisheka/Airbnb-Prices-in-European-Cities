@@ -1,0 +1,40 @@
+1. Open terminal on the directory where the aws key store.
+
+2. Run below commands.
+    Log in to the EC2 
+        chmod 400 mlapi_fastapi_key.pem
+        ssh -i "mlapi_fastapi_key.pem" ubuntu@ec2-54-252-215-24.ap-southeast-2.compute.amazonaws.com
+
+    These codes run when only created the instance
+        $ sudo apt-get update
+        $ sudo apt install -y python3-pip nginx
+        $ sudo vim /etc/nginx/sites-enabled/fastapi_nginx
+        in the vim editor
+
+            server{
+                listen 80;
+                server_name 54.252.215.24;
+                location /{
+                    proxy_pass http://127.0.0.1:8000;
+                }       
+            }       
+
+        $ sudo service nginx restart
+        
+        clone the git repo
+        $ git clone https://github.com/t-abhisheka/Airbnb-Prices-in-European-Cities.git
+
+        change directory
+        $ cd Airbnb-Prices-in-European-Cities
+
+        install requirements
+        $ pip3 install -r requirements.txt
+    
+    After EC2 stetup
+        Run the ml model
+        python3 -m uvicorn mlapi:app
+
+3. To use ML Model via API
+    http://54.252.215.24/docs
+
+4. Shutdown the instance
