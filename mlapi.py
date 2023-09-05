@@ -52,4 +52,4 @@ async def scoring_endpoint(item: ScoreingItem):
         # Log the exception for debugging
         print(f"An error occurred: {str(e)}")
         # Raise an HTTP exception with a 500 status code
-        raise HTTPException(status_code=500, detail="Internal Server Error")sda
+        raise HTTPException(status_code=500, detail="Internal Server Error")
